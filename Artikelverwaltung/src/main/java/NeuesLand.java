@@ -86,6 +86,26 @@ public class NeuesLand {
 				+ ", benutzerName=" + benutzerName + "]";
 	}
 	
+	@Override
+	public boolean equals(Object obj) {
+		
+		if (this == obj) {return true;}
+		
+		if(obj instanceof NeuesLand) {
+			NeuesLand l = (NeuesLand) obj;
+		
+					if (this.vorläufigeID ==  l.getVorläufigeID() &&
+					this.countryName.equals(l.countryName) &&
+					this.emmisionen.equals(l.emmisionen) &&
+					this.countryCode.equals(l.countryCode) &&
+					this.benutzerName.equals(l.benutzerName) &&
+					this.benutzerID == l.getBenutzerID()) {
+				return true;
+		}
+	}
+	return super.equals(obj);
+	}
+	
 	
 	
 }

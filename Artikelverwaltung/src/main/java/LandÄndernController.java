@@ -22,7 +22,7 @@ public class LandÄndernController implements Serializable{
 
 	Land land;
 	
-	Configuration con = new Configuration().configure().addAnnotatedClass(LandÄnderung.class);
+	Configuration con = new Configuration().configure().addAnnotatedClass(LandÄnderung.class).addAnnotatedClass(LandEntfernung.class);
 	ServiceRegistry reg = new StandardServiceRegistryBuilder().applySettings(con.getProperties()).build();
 	SessionFactory sf = con.buildSessionFactory(reg);
 	Session session = sf.openSession();
@@ -55,5 +55,11 @@ public class LandÄndernController implements Serializable{
 		System.out.println(landÄnderung);
 	}
 	
+	public void landEntfernen() {
+		LandEntfernung landEntfernung = new LandEntfernung(this.land.getID(),this.land.getCountryName(), EM.getUserBean().getUserName(), EM.getUserBean().getiD());
+		Transaction tx = session.beginTransaction();
+		session.save(landEntfernung);
+		tx.commit();
+	}
 	
 }

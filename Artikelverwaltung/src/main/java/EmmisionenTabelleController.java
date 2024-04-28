@@ -173,6 +173,9 @@ public class EmmisionenTabelleController implements Serializable {
 		  
 	  }
 	 
+	public void addLand(Land landAdd) {
+		emmisionenTabelle.add(landAdd);
+	}
 	
 	 
 	public void replaceLand(Land landRep) {
@@ -187,6 +190,10 @@ public class EmmisionenTabelleController implements Serializable {
 		}
 		}
 			
+	}
+	
+	public void removeLand(Land landRem) {
+		emmisionenTabelle.remove(landRem);
 	}
 	
 	

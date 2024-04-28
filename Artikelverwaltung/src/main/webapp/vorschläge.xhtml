@@ -69,7 +69,38 @@
 				<f:facet name="header">UserID</f:facet>
 				<h:inputText value="#{neuesLand.benutzerID}"/> 
 			</p:column>
-			
+			<p:column>
+				<h:commandButton value="neues Land akzeptieren" action="#{vorschlägeController.neuesLandAkzeptieren(neuesLand)}"/>
+			</p:column>
+			<p:column>
+				<h:commandButton value="neues Land löschen" action="#{vorschlägeController.neuesLandLöschen(neuesLand)}"/>
+			</p:column>
+		</p:dataTable>
+		
+		<p:dataTable value="#{vorschlägeController.entfernteLänder}" var="land">
+			<p:column>
+				<f:facet name="header">ID</f:facet>
+				<h:outputText value="#{land.ID}"/>
+			</p:column>
+			<p:column>
+				<f:facet name="header">Country Name</f:facet>
+				<h:outputText value="#{land.countryName}"/>
+			</p:column>
+			<p:column>
+				<f:facet name="header">User</f:facet>
+				<h:inputText value="#{land.benutzerName}"/> 
+			</p:column>
+			<p:column>
+				<f:facet name="header">UserID</f:facet>
+				<h:inputText value="#{land.benutzerID}"/> 
+			</p:column>
+			<p:column>
+				<h:commandButton value="Land löschen" action="#{vorschlägeController.landEntfernen(land)}"/>
+			</p:column>
+			<p:column>
+				<h:commandButton value="Land nicht löschen " action="#{vorschlägeController.landNichtEntfernen(land)}"/>
+			</p:column>
+		
 		</p:dataTable>
 </h:form>
 </h:body>
