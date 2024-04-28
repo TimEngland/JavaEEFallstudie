@@ -22,23 +22,15 @@ public class EmmisionenTabelleController implements Serializable {
 
 	private ArrayList<Land> emmisionenTabelle = new ArrayList<Land>();  
 	
-	private ArrayList<Land> filterTabelle = new ArrayList<Land>();
 	
 	
 	
-	private String suchEingabe ;
 	
-	private Land landÄndern;
 	
-	@Inject	
-	UserBean userBean;
+	
+	
 			
-			
-	@Override
-	public String toString() {
-		return "EmmisionenTabelleController [suchEingabe=" + suchEingabe + ", landÄndern=" + landÄndern + "]";
-	}
-
+		
 
    
 	
@@ -57,7 +49,7 @@ public class EmmisionenTabelleController implements Serializable {
 		
 		tx.commit();
 		
-		filterTabelle = filtern(suchEingabe);
+		
 	}
 
 
@@ -74,104 +66,28 @@ public class EmmisionenTabelleController implements Serializable {
 
 
 
-	public ArrayList<Land> getFilterTabelle() {
-		return filterTabelle;
-	}
-
-
-
-	public void setFilterTabelle(ArrayList<Land> filterTabelle) {
-		this.filterTabelle = filterTabelle;
-	}
 	
-	
-	
-	
-	
-	public String getSuchEingabe() {
-		return suchEingabe;
-	}
-
-
-
-	public void setSuchEingabe(String suchEingabe) {
-		this.suchEingabe = suchEingabe;
-	}
 
 	
 	
 
 
 	
-	public Land getLandÄndern() {
-		if(this.landÄndern == null) {
-			this.landÄndern = new Land();
-		}
-		return landÄndern;
-	}
-
-
-
-	public void setLandÄndern(Land landÄndern) {
-		this.landÄndern = landÄndern;
-	}
+	
+	
 
 	
 
-	public UserBean getUserBean() {
-		return userBean;
-	}
 
 
 
-	public void setUserBean(UserBean userBean) {
-		this.userBean = userBean;
-	}
-
-
-
-
-
-	public ArrayList<Land> filtern(String suchEingabe){
-		if(suchEingabe == null || suchEingabe == "") {
-			return getEmmisionenTabelle();
-		}	
-		ArrayList<Land> fT = new ArrayList<Land>();
-		
-		for(Land land : emmisionenTabelle ) {
-		if(land.getCountryName().contains(suchEingabe)) {
-			fT.add(land);
-			}
-		}
 	
-			return fT;
-	}
 	
-	public void updateFilterTabelle() {
-		filterTabelle = filtern(this.suchEingabe);
-	}
 	
-	public void änderungEinreichen( Land landPara)  { 
-   	  
-		System.out.println("Aufgeruffen");
-		for (Land land: filterTabelle) {
-   		  if(landPara.getID() == land.getID()) {
-   			
-   		  }
-   	  }
-		
-    }
 
 	
 
-	 public String returnLand(Land land) {
-		  System.out.println(land);
-		  //Weil sonst Feld Landändern mit land aus emmisionentabelle verknüpft ist, Warum auch immer ?
-		 this.landÄndern = new Land(land);
-		 System.out.println(this.landÄndern);
-		  return "landÄndern.xhtml";
-		  
-	  }
+	
 	 
 	public void addLand(Land landAdd) {
 		emmisionenTabelle.add(landAdd);
@@ -197,12 +113,7 @@ public class EmmisionenTabelleController implements Serializable {
 	}
 	
 	
-	public String berechtigungVorschlägePrüfen() {
-		if(userBean.getiD() == 0) return "vorschläge.xhtml";
-		
-		else return "emmisionenTabelle.xhtml";
-		
-	}
+	
 	     
 }
 

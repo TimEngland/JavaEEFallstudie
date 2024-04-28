@@ -12,19 +12,19 @@
 </h:head>
  <h:body>
  
-	 <h:outputText value="Aktueller Benutzer: #{emmisionenTabelleController.userBean.userName}"/>
+	 <h:outputText value="Aktueller Benutzer: #{backEndController.userBean.userName}"/>
 	 
 <h:form>
-  <h:commandButton value="Änderungsvorschläge verwalten" action="#{emmisionenTabelleController.berechtigungVorschlägePrüfen()}"/>
+  <h:commandButton value="Änderungsvorschläge verwalten" action="#{backEndController.berechtigungVorschlägePrüfen()}"/>
 </h:form>
 	<a href="neuesLand.xhtml">Land hinzufügen</a>
 		<h:form>
-			<h:inputText value="#{emmisionenTabelleController.suchEingabe}"></h:inputText>
-			<p:ajax event="keyup" update="filterTabelle" listener="#{emmisionenTabelleController.updateFilterTabelle}"/>
+			<h:inputText value="#{backEndController.suchEingabe}"></h:inputText>
+			<p:ajax event="keyup" update="filterTabelle" listener="#{backEndController.updateFilterTabelle}"/>
 		</h:form>
 		
 		
-		<p:dataTable value="#{emmisionenTabelleController.filterTabelle}" var="land" id="filterTabelle"
+		<p:dataTable value="#{backEndController.filterTabelle}" var="land" id="filterTabelle"
 						>
 			
 			<f:facet name="header">Emmisionen Tabelle</f:facet>
@@ -42,7 +42,7 @@
 			</p:column>
 			<p:column>
 				<h:form>
-				 		<h:commandLink action="#{emmisionenTabelleController.returnLand(land)}">Land bearbeiten</h:commandLink>
+				 		<h:commandLink action="#{backEndController.returnLand(land)}">Land bearbeiten</h:commandLink>
 				</h:form>
 			</p:column>
 			

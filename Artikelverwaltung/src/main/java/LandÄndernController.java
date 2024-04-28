@@ -18,7 +18,10 @@ import jakarta.inject.Named;
 public class LandÄndernController implements Serializable{
 	//Dies ist ein Test
 	@Inject
-	EmmisionenTabelleController EM ;
+	BackEndController BEC ;
+	
+	@Inject
+	UserBean userBean;
 
 	Land land;
 	
@@ -35,7 +38,7 @@ public class LandÄndernController implements Serializable{
 
 
 	public Land getLand() {
-		land = EM.getLandÄndern();
+		land = BEC.getLandÄndern();
 		return land;
 	}
 
@@ -44,19 +47,19 @@ public class LandÄndernController implements Serializable{
 	}
 
 	public void änderungVorschlagen() {
-		LandÄnderung landÄnderung = new LandÄnderung(this.land, EM.getUserBean().getUserName(), EM.getUserBean().getiD());
+		LandÄnderung landÄnderung = new LandÄnderung(this.land, userBean.getUserName(), userBean.getiD());
 		Transaction tx = session.beginTransaction();
 		session.save(landÄnderung);
 		tx.commit();
 	}
 	
 	public void änderungAusgeben() {
-		LandÄnderung landÄnderung = new LandÄnderung(this.land, EM.getUserBean().getUserName(), EM.getUserBean().getiD());
+		LandÄnderung landÄnderung = new LandÄnderung(this.land, userBean.getUserName(), userBean.getiD());
 		System.out.println(landÄnderung);
 	}
 	
 	public void landEntfernen() {
-		LandEntfernung landEntfernung = new LandEntfernung(this.land.getID(),this.land.getCountryName(), EM.getUserBean().getUserName(), EM.getUserBean().getiD());
+		LandEntfernung landEntfernung = new LandEntfernung(this.land.getID(),this.land.getCountryName(), userBean.getUserName(), userBean.getiD());
 		Transaction tx = session.beginTransaction();
 		session.save(landEntfernung);
 		tx.commit();
