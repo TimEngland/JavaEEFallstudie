@@ -18,7 +18,7 @@ UserBean userBean;
 
 ArrayList<Land> emmisionenTabelle;
 
-private ArrayList<Land> filterTabelle = new ArrayList<Land>();
+private ArrayList<Land> filterTabelle;
 
 private String suchEingabe ;
 
@@ -27,7 +27,6 @@ private Land landÄndern;
 
 public BackEndController() {
 	
-
 
 }
 

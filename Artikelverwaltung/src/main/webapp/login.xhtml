@@ -23,6 +23,36 @@
       </h:panelGrid>
       <h:messages/>
        </h:form>
+       
+       <h:form>
+			<h:inputText value="#{loginController.suchEingabe}"></h:inputText>
+			<p:ajax event="keyup" update="filterTabelle" listener="#{loginController.updateFilterTabelle}"/>
+		</h:form>
+		
+		
+		<p:dataTable value="#{loginController.filterTabelle}" var="land" id="filterTabelle"
+						>
+			
+			<f:facet name="header">Emmisionen Tabelle</f:facet>
+			<p:column>
+				<f:facet name="header">County Code</f:facet>
+				<h:outputText value="#{land.countryCode}"/>
+			</p:column>
+			<p:column>
+				<f:facet name="header">County Name</f:facet>
+				<h:outputText value="#{land.countryName}"/>
+			</p:column>
+			<p:column>
+				<f:facet name="header">Emmisionen</f:facet>
+				<h:outputText value="#{land.emmisionen}"/> 
+			</p:column>
+			<p:column>
+				<h:form>
+				 		<h:commandLink action="#{loginController.returnLand(land)}">Land bearbeiten</h:commandLink>
+				</h:form>
+			</p:column>
+			
+		</p:dataTable>
       	
 </h:body>
 </html>

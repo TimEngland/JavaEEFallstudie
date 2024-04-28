@@ -1,3 +1,4 @@
+
 import jakarta.faces.application.FacesMessage;
 import jakarta.faces.component.UIComponent;
 import jakarta.faces.component.UIInput;
@@ -27,6 +28,12 @@ public class LoginController implements Serializable{
 	private User user;
 	
 	private String userNameVal;
+	
+	ArrayList<Land> emmisionenTabelle;
+
+	private ArrayList<Land> filterTabelle;
+
+	private String suchEingabe ;
 	
 	@Inject
 	UserBean userBean;
@@ -62,8 +69,16 @@ public class LoginController implements Serializable{
 	}
 
 
+	public ArrayList<Land> getEmmisionenTabelle() {
+	this.emmisionenTabelle = ETC.getEmmisionenTabelle();
+	return emmisionenTabelle;
+}
 
 
+
+	public void setEmmisionenTabelle(ArrayList<Land> emmisionenTabelle) {
+	this.emmisionenTabelle = emmisionenTabelle;
+	}
 
 	public String login() {
 		
@@ -104,5 +119,50 @@ public class LoginController implements Serializable{
 		System.out.println("Login falsch");
 		throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR, "Login falscho", null));
 	}
+	
+	
+
+public ArrayList<Land> getFilterTabelle() {
+	filterTabelle = filtern(suchEingabe);
+	return filterTabelle;
+}
+
+
+
+public void setFilterTabelle(ArrayList<Land> filterTabelle) {
+	this.filterTabelle = filterTabelle;
+}
+
+
+
+
+public String getSuchEingabe() {
+	return suchEingabe;
+}
+
+
+public void setSuchEingabe(String suchEingabe) {
+	this.suchEingabe = suchEingabe;
+}
+
+public ArrayList<Land> filtern(String suchEingabe){
+	if(suchEingabe == null || suchEingabe == "") {
+		return getEmmisionenTabelle();
+	}	
+	ArrayList<Land> fT = new ArrayList<Land>();
+	
+	for(Land land : emmisionenTabelle ) {
+	if(land.getCountryName().contains(suchEingabe)) {
+		fT.add(land);
+		}
+	}
+
+		return fT;
+}
+
+public void updateFilterTabelle() {
+	filterTabelle = filtern(this.suchEingabe);
+}
+
 	
 }
