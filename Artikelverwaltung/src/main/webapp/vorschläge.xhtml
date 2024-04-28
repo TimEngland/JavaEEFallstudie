@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>Insert title here</title>
+</h:head>
+<h:body>
+ <a href="emmisionenTablle.xhtml">Zurück zur Tabelle</a>
+<h:form>
+	<h:dataTable value="#{vorschlägeController.vorschläge}" var="vor" id="tabelle">
+			<f:facet name="header">Vorschläge</f:facet>
+			<h:column>
+				<f:facet name="header">ID</f:facet>
+				<h:inputText value="#{vor.ID}"/>
+			</h:column>
+			<h:column>
+				<f:facet name="header">County Code</f:facet>
+				<h:inputText value="#{vor.countryCode}"/>
+			</h:column>
+			<h:column>
+				<f:facet name="header">County Name</f:facet>
+				<h:inputText value="#{vor.countryName}"/>
+			</h:column>
+			<h:column>
+				<f:facet name="header">Emmisionen</f:facet>
+				<h:inputText value="#{vor.emmisionen}"/> 
+			</h:column>
+			<h:column>
+				<f:facet name="header">User</f:facet>
+				<h:inputText value="#{vor.benutzerName}"/> 
+			</h:column>
+			<h:column>
+				<f:facet name="header">UserID</f:facet>
+				<h:inputText value="#{vor.benutzerID}"/> 
+			</h:column>
+			<h:column>
+				<h:commandButton value="Vorschlag löschen" action="#{vorschlägeController.vorschlagLöschen(vor)}" />
+			</h:column>
+			<h:column>
+				<h:commandButton value="Vorschlag akzeptieren" action="#{vorschlägeController.vorschlagAkzeptieren(vor)}"/>
+			</h:column>
+		</h:dataTable>
+</h:form>
+<h:form>
+	<p:dataTable value="#{vorschlägeController.neueLänder}" var="neuesLand" id="tabelle">
+			<f:facet name="header">neue Länder Vorschläge</f:facet>
+			
+			<p:column>
+				<f:facet name="header">County Code</f:facet>
+				<h:inputText value="#{neuesLand.countryCode}"/>
+			</p:column>
+			<p:column>
+				<f:facet name="header">County Name</f:facet>
+				<h:inputText value="#{neuesLand.countryName}"/>
+			</p:column>
+			<p:column>
+				<f:facet name="header">Emmisionen</f:facet>
+				<h:inputText value="#{neuesLand.emmisionen}"/> 
+			</p:column>
+			<p:column>
+				<f:facet name="header">User</f:facet>
+				<h:inputText value="#{neuesLand.benutzerName}"/> 
+			</p:column>
+			<p:column>
+				<f:facet name="header">UserID</f:facet>
+				<h:inputText value="#{neuesLand.benutzerID}"/> 
+			</p:column>
+			
+		</p:dataTable>
+</h:form>
+</h:body>
+</html>
