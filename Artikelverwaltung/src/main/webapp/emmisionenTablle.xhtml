@@ -19,7 +19,10 @@
 </h:form>
 	<a href="neuesLand.xhtml">Land hinzufügen</a>
 		<h:form>
-			<h:inputText value="#{backEndController.suchEingabe}"></h:inputText>
+			<h:outputLabel for="suchEingabe">Land suchen: </h:outputLabel>
+			<h:inputText value="#{backEndController.suchEingabe}">
+				<f:validateRegex pattern="[A-Za-zÄÜÖäüö\s]+"/>
+			</h:inputText>
 			<p:ajax event="keyup" update="filterTabelle" listener="#{backEndController.updateFilterTabelle}"/>
 		</h:form>
 		
