@@ -67,6 +67,14 @@ public class NeuesLandController implements Serializable{
 		this.bestätigung = bestätigung;
 	}
 	
+	public String berechtigungPrüfen() {
+		if(userBean.getiD()== -99) {
+			return "login.xhtml";
+		}
+		else return "neuesLand.xhtml";
+		
+	}
+	
 	
 
 }

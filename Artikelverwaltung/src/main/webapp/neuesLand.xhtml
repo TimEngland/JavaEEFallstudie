@@ -5,44 +5,46 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <head>
-<link rel="stylesheet" type="text/css" media="screen" href="style.css"/>
+<link rel="stylesheet" type="text/css" media="screen" href="style1.css"/>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 <title>Insert title here</title>
 </head>
 <body>
+	
 	<a href="emmisionenTablle.xhtml">Zurück zur Tabelle</a>
 	<h:form>
 	<table>
 		<tbody>
 			<tr>	
-				<td><label for="countryCode">Neuer Country Code:</label></td>			
+				<td><label  for="countryCode">Neuer Country Code:</label></td>			
 				<td>
-				<h:inputText id="countryCode"  value="#{neuesLandController.neuesLand.countryCode}">
+				<h:inputText id="countryCode"  value="#{neuesLandController.neuesLand.countryCode}" label="countryCode" required="true">
 						<f:validateRegex pattern="[A-ZÄÖÜ]{3}"/>
 				</h:inputText>
+				
 				</td>
-				<td><h:message for="countryCode"></h:message></td>
+				<td><h:message styleClass="error" for="countryCode"/> </td>
 		    </tr>
 		    	
 		    <tr>
 		    	<td><label for="countryName">Neuer Country Name:</label></td>	
 				<td>
-					<h:inputText id="countryName" value="#{neuesLandController.neuesLand.countryName}">
+					<h:inputText id="countryName" value="#{neuesLandController.neuesLand.countryName}" label="County Name" required="true">
 						<f:validateRegex pattern="[A-Za-zÄÜÖäüö\s]+"/>
 					</h:inputText>
 					
 				</td>
-				<td><h:message for="countryName"></h:message></td>
+				<td><h:message styleClass="error" for="countryName"></h:message></td>
 			</tr>
 			
 			<tr>
 				<td><label for="emissionen">Neue Emissionen:</label></td>	
 				<td>
-					<h:inputText id="emissionen" value="#{neuesLandController.neuesLand.emmisionen}" required="true">
+					<h:inputText id="emissionen" value="#{neuesLandController.neuesLand.emmisionen}" label="Emmsisionen" required="true">
 						<f:validateRegex pattern="[0-9]+,*[0-9]*"/>
 					</h:inputText>
 				</td>
-				<td><h:message for="emissionen"></h:message></td>
+				<td><h:message styleClass="error" for="emissionen"></h:message></td>
 			</tr>
 		
 		</tbody>
@@ -55,7 +57,10 @@
 	<h:outputText id="Bestätigung" value="#{neuesLandController.bestätigung}"></h:outputText>
 	</h:form>
 
-	
+	<f:metadata>
+    <f:viewParam name="foo" value="#{bean.foo}" />
+    <f:viewAction action="#{neuesLandController.berechtigungPrüfen()}" />
+	</f:metadata>
 
 </body>
 </html>

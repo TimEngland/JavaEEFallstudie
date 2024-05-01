@@ -7,7 +7,7 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
 
-import jakarta.enterprise.context.Dependent;
+
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
@@ -16,7 +16,7 @@ import jakarta.inject.Named;
 @Named
 @RequestScoped
 public class LandÄndernController implements Serializable{
-	//Dies ist ein Test
+	
 	@Inject
 	BackEndController BEC ;
 	
@@ -65,4 +65,12 @@ public class LandÄndernController implements Serializable{
 		tx.commit();
 	}
 	
+
+	public String berechtigungPrüfen() {
+		if(userBean.getiD()== -99) {
+			return "login.xhtml";
+		}
+		else return "landÄndern.xhtml";
+		
+	}
 }

@@ -89,7 +89,7 @@ public class LoginController implements Serializable{
 		tx.commit();
 		for(User b : benutzerListe) {
 			if(b.equals(this.user)) {
-			    userBean.setUserBean(this.user);
+			    userBean.setUserBean(b);
 				return "emmisionenTablle.xhtml" ;
 			}
 		}
@@ -116,8 +116,8 @@ public class LoginController implements Serializable{
 			User temp = new User(this.userNameVal, (String) value);
 			if(b.equals(temp)) {return;}
 		}
-		System.out.println("Login falsch");
-		throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR, "Login falscho", null));
+		
+		throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR, "Login falsch", null));
 	}
 	
 	

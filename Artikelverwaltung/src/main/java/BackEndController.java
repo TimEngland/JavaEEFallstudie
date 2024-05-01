@@ -120,9 +120,17 @@ public void updateFilterTabelle() {
 }
 
 public String berechtigungVorschlägePrüfen() {
-	if(userBean.getiD() == 0) return "vorschläge.xhtml";
+	System.out.println(userBean.getiD());
+	if(userBean.getiD() == 1) return "vorschläge.xhtml";
 	
 	else return "emmisionenTabelle.xhtml";
 	
 }
+public String berechtigungBackEndPrüfen() {
+	if(userBean.getiD()== -99) {
+		return "login.xhtml";
+	}
+	else return "emmisionenTablle.xhtml";
+}
+
 }

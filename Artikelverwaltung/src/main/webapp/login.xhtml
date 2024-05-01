@@ -4,7 +4,7 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <h:head>
-<link rel="stylesheet" type="text/css" media="screen" href="style.css"/>
+<link rel="stylesheet" type="text/css" media="screen" href="style1.css"/>
   <title>Login</title>
 </h:head>
 <h:body>
@@ -12,16 +12,16 @@
 	<h:panelGrid columns="2">
       
      	<h:outputLabel for="benutzer">Benutzer: </h:outputLabel>
-       	<h:inputText id="benutzer" value="#{loginController.user.userName}">
+       	<h:inputText id="benutzer" value="#{loginController.user.userName}" label="Benutzername" required="true">
        		<f:event type="postValidate" listener="#{loginController.postValidateName}"/>
        	</h:inputText>
         
      	<h:outputLabel for="passwort">Passwort: </h:outputLabel>
-       	<h:inputText id="passwort" validator="#{loginController.validateLogin}" value="#{loginController.user.passWort}"  /> 
+       	<h:inputSecret id="passwort" validator="#{loginController.validateLogin}" value="#{loginController.user.passWort}" label="Passwort" required="true" /> 
       	
       	<h:commandLink value="login" action="#{loginController.login()}"/>
       </h:panelGrid>
-      <h:messages/>
+      <h:messages styleClass="error"/>
        </h:form>
        
        <h:form>

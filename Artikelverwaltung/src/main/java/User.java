@@ -13,7 +13,8 @@ public class User {
 	
 	
 	public User() {
-		
+		//Sonst Programmabruch Error bei Login wenn Benutzer Name leer bleibt, weil user.getBenutzername = null
+		this.userName="";
 	}
 	public User(String userName, String passWort) {
 		this.userName = userName;

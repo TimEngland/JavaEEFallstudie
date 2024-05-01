@@ -3,3 +3,8 @@
 #tabelle, #filterTabelle{
 	width:60%;
 }
+
+.error {
+	
+	color: red;
+}

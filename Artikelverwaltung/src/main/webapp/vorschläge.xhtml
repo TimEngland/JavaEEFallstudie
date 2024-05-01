@@ -11,39 +11,39 @@
 <h:body>
  <a href="emmisionenTablle.xhtml">Zurück zur Tabelle</a>
 <h:form>
-	<h:dataTable value="#{vorschlägeController.vorschläge}" var="vor" id="tabelle">
+	<p:dataTable value="#{vorschlägeController.vorschläge}" var="vor" id="tabelle">
 			<f:facet name="header">Vorschläge</f:facet>
-			<h:column>
+			<p:column>
 				<f:facet name="header">ID</f:facet>
 				<h:inputText value="#{vor.ID}"/>
-			</h:column>
-			<h:column>
+			</p:column>
+			<p:column>
 				<f:facet name="header">County Code</f:facet>
 				<h:inputText value="#{vor.countryCode}"/>
-			</h:column>
-			<h:column>
+			</p:column>
+			<p:column>
 				<f:facet name="header">County Name</f:facet>
 				<h:inputText value="#{vor.countryName}"/>
-			</h:column>
-			<h:column>
+			</p:column>
+			<p:column>
 				<f:facet name="header">Emmisionen</f:facet>
 				<h:inputText value="#{vor.emmisionen}"/> 
-			</h:column>
-			<h:column>
+			</p:column>
+			<p:column>
 				<f:facet name="header">User</f:facet>
 				<h:inputText value="#{vor.benutzerName}"/> 
-			</h:column>
-			<h:column>
+			</p:column>
+			<p:column>
 				<f:facet name="header">UserID</f:facet>
 				<h:inputText value="#{vor.benutzerID}"/> 
-			</h:column>
-			<h:column>
+			</p:column>
+			<p:column>
 				<h:commandButton value="Vorschlag löschen" action="#{vorschlägeController.vorschlagLöschen(vor)}" />
-			</h:column>
-			<h:column>
+			</p:column>
+			<p:column>
 				<h:commandButton value="Vorschlag akzeptieren" action="#{vorschlägeController.vorschlagAkzeptieren(vor)}"/>
-			</h:column>
-		</h:dataTable>
+			</p:column>
+		</p:dataTable>
 </h:form>
 <h:form>
 	<p:dataTable value="#{vorschlägeController.neueLänder}" var="neuesLand" id="tabelle">
@@ -102,6 +102,11 @@
 			</p:column>
 		
 		</p:dataTable>
+		<f:metadata>
+    <f:viewParam name="foo" value="#{bean.foo}" />
+    <f:viewAction action="#{vorschlägeController.berechtigungPrüfen()}" />
+	</f:metadata>
+		
 </h:form>
 </h:body>
 </html>

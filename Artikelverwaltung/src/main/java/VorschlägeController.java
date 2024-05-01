@@ -26,6 +26,9 @@ public class VorschlägeController implements Serializable{
 	@Inject
 	EmmisionenTabelleController EM;
 
+	@Inject
+	UserBean userBean;
+	
 	Configuration con = new Configuration().configure().addAnnotatedClass(LandÄnderung.class).addAnnotatedClass(Land.class).addAnnotatedClass(NeuesLand.class).addAnnotatedClass(LandEntfernung.class);
 	ServiceRegistry reg = new StandardServiceRegistryBuilder().applySettings(con.getProperties()).build();
 	SessionFactory sf = con.buildSessionFactory(reg);
@@ -153,6 +156,14 @@ public void landNichtEntfernen(LandEntfernung landEntfernung) {
 	Transaction tx = session.beginTransaction();
 		session.remove(landEntfernung);
 	tx.commit();
+}
+
+public String berechtigungPrüfen() {
+	if(userBean.getiD() != 1) {
+		return "emmisionenTablle.xhtml";
+	}
+	else return "vorschläge.xhtml";
+	
 }
 
 }
