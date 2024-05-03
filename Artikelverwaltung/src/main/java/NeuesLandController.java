@@ -23,22 +23,19 @@ public class NeuesLandController implements Serializable{
 	
 	private String bestätigung;
 	
-	Configuration con = new Configuration().configure().addAnnotatedClass(NeuesLand.class);
-	ServiceRegistry reg = new StandardServiceRegistryBuilder().applySettings(con.getProperties()).build();
-	SessionFactory sf = con.buildSessionFactory(reg);
-	Session session = sf.openSession();
+	private NeuesLandDAO neuesLandDAO;
+	
 	
 	public NeuesLandController() {
 		neuesLand = new NeuesLand();
+		neuesLandDAO = new NeuesLandDAO();
 	}
 	
 	public void neuesLandVorschlagen() {
 		neuesLand.setBenutzerID(userBean.getiD());
 		neuesLand.setBenutzerName(userBean.getUserName());
 		
-		Transaction tx = session.beginTransaction();
-		session.save(neuesLand);
-		tx.commit();
+		neuesLandDAO.saveNeuesLand(neuesLand);
 		
 		bestätigung = neuesLand + "wurde als Vorschlag gespechert";
 	}

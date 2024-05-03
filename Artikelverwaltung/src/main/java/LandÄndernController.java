@@ -25,15 +25,14 @@ public class LandÄndernController implements Serializable{
 
 	Land land;
 	
-	Configuration con = new Configuration().configure().addAnnotatedClass(LandÄnderung.class).addAnnotatedClass(LandEntfernung.class);
-	ServiceRegistry reg = new StandardServiceRegistryBuilder().applySettings(con.getProperties()).build();
-	SessionFactory sf = con.buildSessionFactory(reg);
-	Session session = sf.openSession();
-
+	private LandEntfernungDAO landEntfernungDAO;
+	private LandÄnderungDAO landÄnderungDAO;
 	
 
+	
 	public LandÄndernController() {
-	  System.out.println("Hallo");
+	 landEntfernungDAO = new LandEntfernungDAO();
+	 landÄnderungDAO = new LandÄnderungDAO();
 	}
 
 
@@ -48,9 +47,8 @@ public class LandÄndernController implements Serializable{
 
 	public void änderungVorschlagen() {
 		LandÄnderung landÄnderung = new LandÄnderung(this.land, userBean.getUserName(), userBean.getiD());
-		Transaction tx = session.beginTransaction();
-		session.save(landÄnderung);
-		tx.commit();
+		
+		landÄnderungDAO.saveLandÄnderung(landÄnderung);
 	}
 	
 	public void änderungAusgeben() {
@@ -60,9 +58,9 @@ public class LandÄndernController implements Serializable{
 	
 	public void landEntfernen() {
 		LandEntfernung landEntfernung = new LandEntfernung(this.land.getID(),this.land.getCountryName(), userBean.getUserName(), userBean.getiD());
-		Transaction tx = session.beginTransaction();
-		session.save(landEntfernung);
-		tx.commit();
+	
+		landEntfernungDAO.saveLandEntfernung(landEntfernung);
+		
 	}
 	
 
