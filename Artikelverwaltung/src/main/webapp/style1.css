@@ -1,10 +1,22 @@
 @charset "ISO-8859-1";
 
 #tabelle, #filterTabelle{
-	width:60%;
+	width:80%; 
+	
 }
 
 .error {
 	
 	color: red;
+}
+
+
+#head-div{
+	display: flex;
+	padding-inline: 10%;
+	padding-top: 3em;
+}
+
+.head{
+	padding-inline: 5%;
 }

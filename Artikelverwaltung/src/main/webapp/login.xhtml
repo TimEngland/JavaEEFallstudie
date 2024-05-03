@@ -46,14 +46,10 @@
 				<h:outputText value="#{land.countryName}"/>
 			</p:column>
 			<p:column>
-				<f:facet name="header">Emmisionen</f:facet>
+				<f:facet name="header">Emissionen in t CO2 Eqivalent</f:facet>
 				<h:outputText value="#{land.emmisionen}"/> 
 			</p:column>
-			<p:column>
-				<h:form>
-				 		<h:commandLink action="#{loginController.returnLand(land)}">Land bearbeiten</h:commandLink>
-				</h:form>
-			</p:column>
+			
 			
 		</p:dataTable>
       	

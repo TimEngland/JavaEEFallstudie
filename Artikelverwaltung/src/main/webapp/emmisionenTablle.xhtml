@@ -13,12 +13,10 @@
  <h:body>
  
 	 <h:outputText value="Aktueller Benutzer: #{backEndController.userBean.userName}"/>
-	 
-<h:form>
-  <h:commandButton value="Änderungsvorschläge verwalten" action="#{backEndController.berechtigungVorschlägePrüfen()}"/>
-</h:form>
-	<a href="neuesLand.xhtml">Land hinzufügen</a>
-		<h:form>
+<div id="head-div">
+
+	
+		<h:form styleClass="head">
 			<h:outputLabel for="suchEingabe">Land suchen: </h:outputLabel>
 			<h:inputText value="#{backEndController.suchEingabe}">
 				<f:validateRegex pattern="[A-Za-zÄÜÖäüö\s]+"/>
@@ -26,9 +24,14 @@
 			<p:ajax event="keyup" update="filterTabelle" listener="#{backEndController.updateFilterTabelle}"/>
 		</h:form>
 		
+		<a styleClass="head" href="neuesLand.xhtml">Land hinzufügen</a>
 		
-		<p:dataTable value="#{backEndController.filterTabelle}" var="land" id="filterTabelle"
-						>
+		<h:form styleClass="head">
+  <h:commandButton value="Änderungsvorschläge verwalten" action="#{backEndController.berechtigungVorschlägePrüfen()}"/>
+		</h:form>
+</div>		
+		
+		<p:dataTable value="#{backEndController.filterTabelle}" var="land" id="filterTabelle">
 			
 			<f:facet name="header">Emmisionen Tabelle</f:facet>
 			<p:column>
@@ -40,12 +43,13 @@
 				<h:outputText value="#{land.countryName}"/>
 			</p:column>
 			<p:column>
-				<f:facet name="header">Emmisionen</f:facet>
+				<f:facet name="header">Emissionen in t CO2 Eqivalent</f:facet>
 				<h:outputText value="#{land.emmisionen}"/> 
 			</p:column>
 			<p:column>
+				<f:facet name="header">Land bearbeiten/löschen</f:facet>
 				<h:form>
-				 		<h:commandLink action="#{backEndController.returnLand(land)}">Land bearbeiten</h:commandLink>
+				 		<h:commandButton action="#{backEndController.returnLand(land)}" value="Land bearbeiten/löschen"></h:commandButton>
 				</h:form>
 			</p:column>
 			
