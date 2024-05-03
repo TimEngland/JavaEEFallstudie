@@ -29,22 +29,27 @@ public class VorschlägeController implements Serializable{
 	@Inject
 	UserBean userBean;
 	
-	Configuration con = new Configuration().configure().addAnnotatedClass(LandÄnderung.class).addAnnotatedClass(Land.class).addAnnotatedClass(NeuesLand.class).addAnnotatedClass(LandEntfernung.class);
-	ServiceRegistry reg = new StandardServiceRegistryBuilder().applySettings(con.getProperties()).build();
-	SessionFactory sf = con.buildSessionFactory(reg);
-	Session session = sf.openSession();
-
+	private LandDAO landDAO;
+	private LandÄnderungDAO landÄnderungDAO;
+	private NeuesLandDAO neuesLandDAO;
+	private LandEntfernungDAO landEntfernungDAO;
+	
+	
 public VorschlägeController() {
 	
+	landDAO = new LandDAO();
+	landÄnderungDAO = new LandÄnderungDAO();
+	neuesLandDAO = new NeuesLandDAO();
+	landEntfernungDAO = new LandEntfernungDAO();
 	
 	
-	Transaction tx = session.beginTransaction();
 	
-	vorschläge = (ArrayList<LandÄnderung>) session.createSQLQuery("SELECT * FROM umweltdaten.landänderung").addEntity(LandÄnderung.class).getResultList();
-	neueLänder = (ArrayList<NeuesLand>) session.createSQLQuery("SELECT * FROM umweltdaten.neuesland").addEntity(NeuesLand.class).getResultList();
-	entfernteLänder = (ArrayList<LandEntfernung>) session.createSQLQuery("SELECT * FROM umweltdaten.landentfernung").addEntity(LandEntfernung.class).getResultList();
 	
-	tx.commit();
+	vorschläge = landÄnderungDAO.findAll();
+	neueLänder = neuesLandDAO.findAll();
+	entfernteLänder = landEntfernungDAO.findAll();
+	
+	
 	
 	
 }
@@ -81,24 +86,18 @@ public void setEntfernteLänder(ArrayList<LandEntfernung> entfernteLänder) {
 public void vorschlagLöschen(LandÄnderung vorschlag) {
 	vorschläge.remove(vorschlag);
 	
-	Transaction tx = session.beginTransaction();
-		session.remove(vorschlag);
-	tx.commit();
+	landÄnderungDAO.removeLandÄnderung(vorschlag);
 }
 //vieleicht boolean machen(funktioniert ja nein)
 public void vorschlagAkzeptieren(LandÄnderung vorschlag) {
-	
 
 	Land akzeptiert = new Land(vorschlag.getID(), vorschlag.getCountryCode(), vorschlag.getCountryName(), vorschlag.getEmmisionen());
 	EM.replaceLand(akzeptiert);
 	vorschläge.remove(vorschlag);
 	
 	
-	Transaction tx = session.beginTransaction();
-			session.remove(vorschlag);
-			session.merge(akzeptiert);
-	tx.commit();
-	
+	landÄnderungDAO.removeLandÄnderung(vorschlag);
+	landDAO.changeLand(akzeptiert);		
 
 }
 
@@ -115,26 +114,21 @@ public void neuesLandAkzeptieren(NeuesLand neuesLand) {
 	
 	EM.addLand(akzeptiert);
 	neueLänder.remove(neuesLand);
-	
-	Transaction tx = session.beginTransaction();
-	session.remove(neuesLand);
-	session.save(akzeptiert);
-	tx.commit();
+
+	neuesLandDAO.removeNeuesLand(neuesLand);
+	landDAO.saveLand(akzeptiert);
 }
 
 public void neuesLandLöschen(NeuesLand neuesLand) {
-	neueLänder.remove(neuesLand);
-	
-	Transaction tx = session.beginTransaction();
-		session.remove(neuesLand);
-	tx.commit();
+	neueLänder.remove(neuesLand);	
+	neuesLandDAO.removeNeuesLand(neuesLand);
 }
 
 public void landEntfernen(LandEntfernung landEntfernung) {
 	entfernteLänder.remove(landEntfernung);
-	Transaction t = session.beginTransaction();
-		session.remove(landEntfernung);
-	t.commit();
+	
+	landEntfernungDAO.removeLandEntfernung(landEntfernung);
+	
 	Land land = null;
 	for(Land l : EM.getEmmisionenTabelle()) {
 		if(l.getID() == landEntfernung.getID()) {
@@ -143,19 +137,18 @@ public void landEntfernen(LandEntfernung landEntfernung) {
 	}
 	if(land != null) {
 	EM.removeLand(land);
-	Transaction tx = session.beginTransaction();
+	
+	landDAO.removeLand(land);
 		
-		session.remove(land);
-	tx.commit();
+
 	}
 }
 
 public void landNichtEntfernen(LandEntfernung landEntfernung) {
 	entfernteLänder.remove(landEntfernung);
 	
-	Transaction tx = session.beginTransaction();
-		session.remove(landEntfernung);
-	tx.commit();
+	landEntfernungDAO.removeLandEntfernung(landEntfernung);
+
 }
 
 public String berechtigungPrüfen() {
