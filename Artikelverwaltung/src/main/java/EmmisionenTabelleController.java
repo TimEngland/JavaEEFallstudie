@@ -18,44 +18,22 @@ import jakarta.inject.Named;
 @ApplicationScoped
 public class EmmisionenTabelleController implements Serializable {
 	
-	
+	private LandDAO landDAO;
 
 	private ArrayList<Land> emmisionenTabelle = new ArrayList<Land>();  
 	
 	
 	
-	
-	
-	
-	
-	
-			
-		
-
-   
-	
-
-
-
 	public EmmisionenTabelleController() {
 		
-		Configuration con = new Configuration().configure().addAnnotatedClass(Land.class);
-		ServiceRegistry reg = new StandardServiceRegistryBuilder().applySettings(con.getProperties()).build();
-		SessionFactory sf = con.buildSessionFactory(reg);
-		Session session = sf.openSession();
-		Transaction tx = session.beginTransaction();
-		
-		emmisionenTabelle = (ArrayList<Land>) session.createSQLQuery("SELECT * FROM umweltdaten.land").addEntity(Land.class).getResultList();
-		
-		tx.commit();
-		
+		landDAO = new LandDAO();
 		
 	}
 
 
 
 	public ArrayList<Land> getEmmisionenTabelle() {
-		return emmisionenTabelle;
+		return landDAO.findAll();
 	}
 
 
@@ -71,24 +49,6 @@ public class EmmisionenTabelleController implements Serializable {
 	
 	
 
-
-	
-	
-	
-
-	
-
-
-
-
-	
-	
-	
-
-	
-
-	
-	 
 	public void addLand(Land landAdd) {
 		emmisionenTabelle.add(landAdd);
 	}

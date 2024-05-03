@@ -35,18 +35,17 @@ public class LoginController implements Serializable{
 
 	private String suchEingabe ;
 	
+	private UserDAO userDAO;
 	@Inject
 	UserBean userBean;
 	
 	@Inject
 	EmmisionenTabelleController ETC;
 	
-	Configuration con = new Configuration().configure().addAnnotatedClass(User.class);
-	ServiceRegistry reg = new StandardServiceRegistryBuilder().applySettings(con.getProperties()).build();
-	SessionFactory sf = con.buildSessionFactory(reg);
-	Session session = sf.openSession();
+	
 	
 	public LoginController() {
+		this.userDAO = new UserDAO();
 		this.user = new User();
 		
 	}
@@ -82,11 +81,11 @@ public class LoginController implements Serializable{
 
 	public String login() {
 		
-		Transaction tx = session.beginTransaction();
 		
-		List<User> benutzerListe  = (List<User>) session.createSQLQuery("SELECT * FROM umweltdaten.user").addEntity(User.class).getResultList();
 		
-		tx.commit();
+		List<User> benutzerListe  = userDAO.findAll();
+		
+		
 		for(User b : benutzerListe) {
 			if(b.equals(this.user)) {
 			    userBean.setUserBean(b);
@@ -107,11 +106,11 @@ public class LoginController implements Serializable{
 	
 	public void validateLogin(FacesContext context, UIComponent component, Object value) throws ValidatorException {
 	
-		Transaction tx = session.beginTransaction();
 		
-		List<User> benutzerListe  = (List<User>) session.createSQLQuery("SELECT * FROM umweltdaten.user").addEntity(User.class).getResultList();
 		
-		tx.commit();
+		List<User> benutzerListe  = userDAO.findAll();
+		
+		
 		for(User b : benutzerListe) {
 			User temp = new User(this.userNameVal, (String) value);
 			if(b.equals(temp)) {return;}
