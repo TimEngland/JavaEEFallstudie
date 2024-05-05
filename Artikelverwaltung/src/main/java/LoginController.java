@@ -151,7 +151,7 @@ public ArrayList<Land> filtern(String suchEingabe){
 	ArrayList<Land> fT = new ArrayList<Land>();
 	
 	for(Land land : emmisionenTabelle ) {
-	if(land.getCountryName().contains(suchEingabe)) {
+	if(land.getCountryName().toLowerCase().contains(suchEingabe.toLowerCase())) {
 		fT.add(land);
 		}
 	}

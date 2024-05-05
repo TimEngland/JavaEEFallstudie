@@ -107,7 +107,7 @@ public ArrayList<Land> filtern(String suchEingabe){
 	ArrayList<Land> fT = new ArrayList<Land>();
 	
 	for(Land land : emmisionenTabelle ) {
-	if(land.getCountryName().contains(suchEingabe)) {
+	if(land.getCountryName().toLowerCase().contains(suchEingabe.toLowerCase())) {
 		fT.add(land);
 		}
 	}
@@ -131,6 +131,16 @@ public String berechtigungBackEndPrüfen() {
 		return "login.xhtml";
 	}
 	else return "emmisionenTablle.xhtml";
+}
+
+public String logout() {
+	userBean.setiD(-99);
+	userBean.setUserName("");
+	return "login.xhtml";	
+}
+
+public String neuesLandNavigation() {
+	return "neuesLand.xhtml";
 }
 
 }

@@ -13,6 +13,7 @@
  <h:body>
  
 	 <h:outputText value="Aktueller Benutzer: #{backEndController.userBean.userName}"/>
+	 <h:form> <h:commandButton action="#{backEndController.logout()}" value="logout"/> </h:form>
 <div id="head-div">
 
 	
@@ -23,9 +24,9 @@
 			</h:inputText>
 			<p:ajax event="keyup" update="filterTabelle" listener="#{backEndController.updateFilterTabelle}"/>
 		</h:form>
-		
-		<a styleClass="head" href="neuesLand.xhtml">Land hinzufügen</a>
-		
+		<h:form>
+		<h:commandButton styleClass="head" action="#{backEndController.neuesLandNavigation()}" value="Land hinzufügen"/>
+		</h:form>
 		<h:form styleClass="head">
   <h:commandButton value="Änderungsvorschläge verwalten" action="#{backEndController.berechtigungVorschlägePrüfen()}"/>
 		</h:form>
