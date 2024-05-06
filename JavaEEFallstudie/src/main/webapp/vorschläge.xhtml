@@ -12,7 +12,7 @@
  <a href="emmisionenTablle.xhtml">Zurück zur Tabelle</a>
 <h:form>
 	<p:dataTable value="#{vorschlägeController.vorschläge}" var="vor" id="tabelle">
-			<f:facet name="header">Vorschläge</f:facet>
+			<f:facet name="header">Änderungsvorschläge</f:facet>
 			<p:column>
 				<f:facet name="header">ID</f:facet>
 				<h:inputText value="#{vor.ID}"/>
@@ -78,6 +78,7 @@
 		</p:dataTable>
 		
 		<p:dataTable value="#{vorschlägeController.entfernteLänder}" var="land">
+			<f:facet name="header">Entfernungs Vorschläge</f:facet>
 			<p:column>
 				<f:facet name="header">ID</f:facet>
 				<h:outputText value="#{land.ID}"/>

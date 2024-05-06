@@ -37,7 +37,7 @@ public class NeuesLandController implements Serializable{
 		
 		neuesLandDAO.saveNeuesLand(neuesLand);
 		
-		bestätigung = neuesLand + "wurde als Vorschlag gespechert";
+		bestätigung = neuesLand + "wurde als Vorschlag gespeichert";
 	}
 
 	public UserBean getUserBean() {
