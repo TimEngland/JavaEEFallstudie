@@ -16,15 +16,15 @@ import jakarta.inject.Named;
 
 @Named
 @ApplicationScoped
-public class EmmisionenTabelleController implements Serializable {
+public class EmissionenTabelleController implements Serializable {
 	
 	private LandDAO landDAO;
 
-	private ArrayList<Land> emmisionenTabelle = new ArrayList<Land>();  
+	private ArrayList<Land> emissionenTabelle = new ArrayList<Land>();  
 	
 	
 	
-	public EmmisionenTabelleController() {
+	public EmissionenTabelleController() {
 		
 		landDAO = new LandDAO();
 		
@@ -32,14 +32,14 @@ public class EmmisionenTabelleController implements Serializable {
 
 
 
-	public ArrayList<Land> getEmmisionenTabelle() {
+	public ArrayList<Land> getEmissionenTabelle() {
 		return landDAO.findAll();
 	}
 
 
 
-	public void setEmmisionenTabelle(ArrayList<Land> emmisionenTabelle) {
-		this.emmisionenTabelle = emmisionenTabelle;
+	public void setEmissionenTabelle(ArrayList<Land> emissionenTabelle) {
+		this.emissionenTabelle = emissionenTabelle;
 	}
 
 
@@ -50,26 +50,26 @@ public class EmmisionenTabelleController implements Serializable {
 	
 
 	public void addLand(Land landAdd) {
-		emmisionenTabelle.add(landAdd);
+		emissionenTabelle.add(landAdd);
 	}
 	
 	 
 	public void replaceLand(Land landRep) {
 		int ID = landRep.getID();
 		int index = -1;
-		for (Land land : emmisionenTabelle) {
+		for (Land land : emissionenTabelle) {
 			if(land.getID() == ID) {
-				index = emmisionenTabelle.indexOf(land);
+				index = emissionenTabelle.indexOf(land);
 			}
 		if(index != -1) {
-			emmisionenTabelle.set(index, landRep);	
+			emissionenTabelle.set(index, landRep);	
 		}
 		}
 			
 	}
 	
 	public void removeLand(Land landRem) {
-		emmisionenTabelle.remove(landRem);
+		emissionenTabelle.remove(landRem);
 	}
 	
 	

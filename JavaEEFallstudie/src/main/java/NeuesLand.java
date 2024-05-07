@@ -10,7 +10,7 @@ public class NeuesLand {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int vorläufigeID;
 	private String countryName;
-	private String emmisionen  ;
+	private String emissionen  ;
 	private String countryCode;
 	private String benutzerName;
 	private int benutzerID;
@@ -19,10 +19,10 @@ public class NeuesLand {
 
 	
 	
-	public NeuesLand(String countryName, String emmisionen, String countryCode, UserBean userBean ) {
+	public NeuesLand(String countryName, String emissionen, String countryCode, UserBean userBean ) {
 		super();
 		this.countryName = countryName;
-		this.emmisionen = emmisionen;
+		this.emissionen = emissionen;
 		this.countryCode = countryCode;
 		this.benutzerID = userBean.getiD();
 		this.benutzerName = userBean.getUserName();
@@ -46,12 +46,12 @@ public class NeuesLand {
 		this.countryName = countryName;
 	}
 
-	public String getEmmisionen() {
-		return emmisionen;
+	public String getEmissionen() {
+		return emissionen;
 	}
 
-	public void setEmmisionen(String emmisionen) {
-		this.emmisionen = emmisionen;
+	public void setEmissionen(String emissionen) {
+		this.emissionen = emissionen;
 	}
 
 	public String getCountryCode() {
@@ -82,7 +82,7 @@ public class NeuesLand {
 
 	@Override
 	public String toString() {
-		return "NeuesLand [countryName=" + countryName + ", emmisionen=" + emmisionen + ", countryCode=" + countryCode
+		return "NeuesLand [countryName=" + countryName + ", emissionen=" + emissionen + ", countryCode=" + countryCode
 				+ ", benutzerName=" + benutzerName + "]";
 	}
 	
@@ -96,7 +96,7 @@ public class NeuesLand {
 		
 					if (this.vorläufigeID ==  l.getVorläufigeID() &&
 					this.countryName.equals(l.countryName) &&
-					this.emmisionen.equals(l.emmisionen) &&
+					this.emissionen.equals(l.emissionen) &&
 					this.countryCode.equals(l.countryCode) &&
 					this.benutzerName.equals(l.benutzerName) &&
 					this.benutzerID == l.getBenutzerID()) {

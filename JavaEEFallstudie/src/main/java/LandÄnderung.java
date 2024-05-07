@@ -11,17 +11,12 @@ public class LandÄnderung  {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int ÄnderungsID;
-	@Override
-	public String toString() {
-		return "LandÄnderung [ÄnderungsID=" + ÄnderungsID + ", ID=" + ID + ", countryName=" + countryName
-				+ ", emmisionen=" + emmisionen + ", countryCode=" + countryCode + ", benutzerName=" + benutzerName
-				+ ", benutzerID=" + benutzerID + "]";
-	}
+	
 
 
 	private int ID;
 	private String countryName;
-	private String emmisionen  ;
+	private String emissionen  ;
 	private String countryCode;
 	private String benutzerName;
 	private int benutzerID;
@@ -43,7 +38,7 @@ public class LandÄnderung  {
 			int benutzerID) {
 		this.ID = land.getID();
 		this.countryName = land.getCountryName();
-		this.emmisionen = land.getEmmisionen();
+		this.emissionen = land.getEmissionen();
 		this.countryCode = land.getCountryCode();
 		this.benutzerName = benutzerName;
 		this.benutzerID = benutzerID;
@@ -99,14 +94,14 @@ public class LandÄnderung  {
 
 
 
-	public String getEmmisionen() {
-		return emmisionen;
+	public String getEmissionen() {
+		return emissionen;
 	}
 
 
 
-	public void setEmmisionen(String emmisionen) {
-		this.emmisionen = emmisionen;
+	public void setEmissionen(String emissionen) {
+		this.emissionen = emissionen;
 	}
 
 
@@ -149,7 +144,7 @@ public class LandÄnderung  {
 			
 						if (this.ID ==  l.getID() &&
 						this.countryName.equals(l.countryName) &&
-						this.emmisionen.equals(l.emmisionen) &&
+						this.emissionen.equals(l.emissionen) &&
 						this.countryCode.equals(l.countryCode) &&
 						this.benutzerName.equals(l.benutzerName) &&
 						this.benutzerID == l.getBenutzerID()) {
@@ -157,6 +152,13 @@ public class LandÄnderung  {
 			}
 		}
 		return super.equals(obj);
+	}
+	
+	@Override
+	public String toString() {
+		return "LandÄnderung [ÄnderungsID=" + ÄnderungsID + ", ID=" + ID + ", countryName=" + countryName
+				+ ", emissionen=" + emissionen + ", countryCode=" + countryCode + ", benutzerName=" + benutzerName
+				+ ", benutzerID=" + benutzerID + "]";
 	}
 	
 

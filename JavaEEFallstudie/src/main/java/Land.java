@@ -9,7 +9,7 @@ public class Land {
 	@Id
 	private int ID;
 	private String countryName;
-	private String emmisionen  ;
+	private String emissionen  ;
 	private String countryCode;
 	
 	public Land() {}
@@ -18,14 +18,14 @@ public class Land {
 		this.ID = ID;
 		this.countryCode = countryCode;
 		this.countryName = countryName;
-		this.emmisionen = emmsisionen;	
+		this.emissionen = emmsisionen;	
 	}
 	
 	public Land(Land land) {
 		this.ID = land.ID;
 		this.countryCode = land.countryCode;
 		this.countryName = land.countryName;
-		this.emmisionen = land.emmisionen;	
+		this.emissionen = land.emissionen;	
 	}
 	
 	public int getID() {
@@ -40,11 +40,11 @@ public class Land {
 	public void setCountryName(String countryName) {
 		this.countryName = countryName;
 	}
-	public String getEmmisionen() {
-		return emmisionen;
+	public String getEmissionen() {
+		return emissionen;
 	}
-	public void setEmmisionen(String emmisionen) {
-		this.emmisionen = emmisionen;
+	public void setEmissionen(String emissionen) {
+		this.emissionen = emissionen;
 	}
 	public String getCountryCode() {
 		return countryCode;
@@ -55,7 +55,7 @@ public class Land {
 
 	@Override
 	public String toString() {
-		return "Land [ID=" + ID + ", countryName=" + countryName + ", emmisionen=" + emmisionen + ", countryCode="
+		return "Land [ID=" + ID + ", countryName=" + countryName + ", emissionen=" + emissionen + ", countryCode="
 				+ countryCode + "]";
 	}
 	
@@ -68,7 +68,7 @@ public class Land {
 			
 						if (this.ID ==  l.getID() &&
 						this.countryName.equals(l.countryName) &&
-						this.emmisionen.equals(l.emmisionen) &&
+						this.emissionen.equals(l.emissionen) &&
 						this.countryCode.equals(l.countryCode) 
 						) {
 					return true;

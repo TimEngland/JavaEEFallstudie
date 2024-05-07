@@ -34,7 +34,7 @@
 		
 		<p:dataTable value="#{backEndController.filterTabelle}" var="land" id="filterTabelle">
 			
-			<f:facet name="header">Emmisionen Tabelle</f:facet>
+			<f:facet name="header">Emissionen Tabelle</f:facet>
 			<p:column>
 				<f:facet name="header">County Code</f:facet>
 				<h:outputText value="#{land.countryCode}"/>
@@ -45,7 +45,7 @@
 			</p:column>
 			<p:column>
 				<f:facet name="header">Emissionen in t CO2 Eqivalent</f:facet>
-				<h:outputText value="#{land.emmisionen}"/> 
+				<h:outputText value="#{land.emissionen}"/> 
 			</p:column>
 			<p:column>
 				<f:facet name="header">Land bearbeiten/löschen</f:facet>

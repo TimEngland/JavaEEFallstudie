@@ -29,7 +29,7 @@ public class LoginController implements Serializable{
 	
 	private String userNameVal;
 	
-	ArrayList<Land> emmisionenTabelle;
+	ArrayList<Land> emissionenTabelle;
 
 	private ArrayList<Land> filterTabelle;
 
@@ -40,7 +40,7 @@ public class LoginController implements Serializable{
 	UserBean userBean;
 	
 	@Inject
-	EmmisionenTabelleController ETC;
+	EmissionenTabelleController ETC;
 	
 	
 	
@@ -68,15 +68,15 @@ public class LoginController implements Serializable{
 	}
 
 
-	public ArrayList<Land> getEmmisionenTabelle() {
-	this.emmisionenTabelle = ETC.getEmmisionenTabelle();
-	return emmisionenTabelle;
+	public ArrayList<Land> getEmissionenTabelle() {
+	this.emissionenTabelle = ETC.getEmissionenTabelle();
+	return emissionenTabelle;
 }
 
 
 
-	public void setEmmisionenTabelle(ArrayList<Land> emmisionenTabelle) {
-	this.emmisionenTabelle = emmisionenTabelle;
+	public void setEmissionenTabelle(ArrayList<Land> emissionenTabelle) {
+	this.emissionenTabelle = emissionenTabelle;
 	}
 
 	public String login() {
@@ -89,7 +89,7 @@ public class LoginController implements Serializable{
 		for(User b : benutzerListe) {
 			if(b.equals(this.user)) {
 			    userBean.setUserBean(b);
-				return "emmisionenTablle.xhtml" ;
+				return "emissionenTablle.xhtml" ;
 			}
 		}
 	
@@ -146,11 +146,11 @@ public void setSuchEingabe(String suchEingabe) {
 
 public ArrayList<Land> filtern(String suchEingabe){
 	if(suchEingabe == null || suchEingabe == "") {
-		return getEmmisionenTabelle();
+		return getEmissionenTabelle();
 	}	
 	ArrayList<Land> fT = new ArrayList<Land>();
 	
-	for(Land land : emmisionenTabelle ) {
+	for(Land land : emissionenTabelle ) {
 	if(land.getCountryName().toLowerCase().contains(suchEingabe.toLowerCase())) {
 		fT.add(land);
 		}

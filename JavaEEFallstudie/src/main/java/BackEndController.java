@@ -11,12 +11,12 @@ import jakarta.inject.Named;
 public class BackEndController implements Serializable {
 	
 @Inject
-EmmisionenTabelleController EMC;
+EmissionenTabelleController EMC;
 
 @Inject	
 UserBean userBean;
 
-ArrayList<Land> emmisionenTabelle;
+ArrayList<Land> emissionenTabelle;
 
 private ArrayList<Land> filterTabelle;
 
@@ -31,15 +31,15 @@ public BackEndController() {
 }
 
 
-public ArrayList<Land> getEmmisionenTabelle() {
-	this.emmisionenTabelle = EMC.getEmmisionenTabelle();
-	return emmisionenTabelle;
+public ArrayList<Land> getEmissionenTabelle() {
+	this.emissionenTabelle = EMC.getEmissionenTabelle();
+	return emissionenTabelle;
 }
 
 
 
-public void setEmmisionenTabelle(ArrayList<Land> emmisionenTabelle) {
-	this.emmisionenTabelle = emmisionenTabelle;
+public void setEmissionenTabelle(ArrayList<Land> emissionenTabelle) {
+	this.emissionenTabelle = emissionenTabelle;
 }
 
 public Land getLandÄndern() {
@@ -93,7 +93,7 @@ public void setSuchEingabe(String suchEingabe) {
 
 public String returnLand(Land land) {
 	  System.out.println(land);
-	  //Weil sonst Feld Landändern mit land aus emmisionentabelle verknüpft ist, Warum auch immer ?
+	  //Weil sonst Feld Landändern mit land aus emissionentabelle verknüpft ist, Warum auch immer ?
 	 this.landÄndern = new Land(land);
 	 System.out.println(this.landÄndern);
 	  return "landÄndern.xhtml";
@@ -102,11 +102,11 @@ public String returnLand(Land land) {
 
 public ArrayList<Land> filtern(String suchEingabe){
 	if(suchEingabe == null || suchEingabe == "") {
-		return getEmmisionenTabelle();
+		return getEmissionenTabelle();
 	}	
 	ArrayList<Land> fT = new ArrayList<Land>();
 	
-	for(Land land : emmisionenTabelle ) {
+	for(Land land : emissionenTabelle ) {
 	if(land.getCountryName().toLowerCase().contains(suchEingabe.toLowerCase())) {
 		fT.add(land);
 		}
@@ -123,14 +123,14 @@ public String berechtigungVorschlägePrüfen() {
 	System.out.println(userBean.getiD());
 	if(userBean.getiD() == 1) return "vorschläge.xhtml";
 	
-	else return "emmisionenTabelle.xhtml";
+	else return "emissionenTabelle.xhtml";
 	
 }
 public String berechtigungBackEndPrüfen() {
 	if(userBean.getiD()== -99) {
 		return "login.xhtml";
 	}
-	else return "emmisionenTablle.xhtml";
+	else return "emissionenTablle.xhtml";
 }
 
 public String logout() {

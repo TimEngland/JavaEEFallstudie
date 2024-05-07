@@ -24,7 +24,7 @@ public class VorschlägeController implements Serializable{
 	private ArrayList<LandEntfernung> entfernteLänder;
 	
 	@Inject
-	EmmisionenTabelleController EM;
+	EmissionenTabelleController EM;
 
 	@Inject
 	UserBean userBean;
@@ -91,7 +91,7 @@ public void vorschlagLöschen(LandÄnderung vorschlag) {
 //vieleicht boolean machen(funktioniert ja nein)
 public void vorschlagAkzeptieren(LandÄnderung vorschlag) {
 
-	Land akzeptiert = new Land(vorschlag.getID(), vorschlag.getCountryCode(), vorschlag.getCountryName(), vorschlag.getEmmisionen());
+	Land akzeptiert = new Land(vorschlag.getID(), vorschlag.getCountryCode(), vorschlag.getCountryName(), vorschlag.getEmissionen());
 	EM.replaceLand(akzeptiert);
 	vorschläge.remove(vorschlag);
 	
@@ -102,15 +102,15 @@ public void vorschlagAkzeptieren(LandÄnderung vorschlag) {
 }
 
 public void neuesLandAkzeptieren(NeuesLand neuesLand) {
-	ArrayList<Land> emmisionenTabelle = EM.getEmmisionenTabelle();
+	ArrayList<Land> emissionenTabelle = EM.getEmissionenTabelle();
 	ArrayList<Integer> IDs = new ArrayList<Integer>();
-	for(Land land : emmisionenTabelle) {
+	for(Land land : emissionenTabelle) {
 		IDs.add(land.getID());
 	}
 	Collections.sort(IDs);
 	int newID = IDs.get(IDs.size()-1)+ 1;
 	
-	Land akzeptiert = new Land(newID, neuesLand.getCountryCode(), neuesLand.getCountryName(), neuesLand.getEmmisionen());
+	Land akzeptiert = new Land(newID, neuesLand.getCountryCode(), neuesLand.getCountryName(), neuesLand.getEmissionen());
 	
 	EM.addLand(akzeptiert);
 	neueLänder.remove(neuesLand);
@@ -130,7 +130,7 @@ public void landEntfernen(LandEntfernung landEntfernung) {
 	landEntfernungDAO.removeLandEntfernung(landEntfernung);
 	
 	Land land = null;
-	for(Land l : EM.getEmmisionenTabelle()) {
+	for(Land l : EM.getEmissionenTabelle()) {
 		if(l.getID() == landEntfernung.getID()) {
 			land = l;
 		}
@@ -153,7 +153,7 @@ public void landNichtEntfernen(LandEntfernung landEntfernung) {
 
 public String berechtigungPrüfen() {
 	if(userBean.getiD() != 1) {
-		return "emmisionenTablle.xhtml";
+		return "emissionenTablle.xhtml";
 	}
 	else return "vorschläge.xhtml";
 	
