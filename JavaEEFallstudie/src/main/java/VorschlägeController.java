@@ -153,7 +153,7 @@ public void landNichtEntfernen(LandEntfernung landEntfernung) {
 
 public String berechtigungPrüfen() {
 	if(userBean.getiD() != 1) {
-		return "emissionenTablle.xhtml";
+		return "backEnd.xhtml";
 	}
 	else return "vorschläge.xhtml";
 	

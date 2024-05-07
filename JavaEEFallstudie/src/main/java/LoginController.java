@@ -89,7 +89,7 @@ public class LoginController implements Serializable{
 		for(User b : benutzerListe) {
 			if(b.equals(this.user)) {
 			    userBean.setUserBean(b);
-				return "emissionenTablle.xhtml" ;
+				return "backEnd.xhtml" ;
 			}
 		}
 	
