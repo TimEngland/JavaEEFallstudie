@@ -1,12 +1,5 @@
 import java.io.Serializable;
-import java.util.ArrayList;
 
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
-import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
-import org.hibernate.cfg.Configuration;
-import org.hibernate.service.ServiceRegistry;
 
 import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Inject;
@@ -37,7 +30,7 @@ public class NeuesLandController implements Serializable{
 		
 		neuesLandDAO.saveNeuesLand(neuesLand);
 		
-		bestätigung = neuesLand + "wurde als Vorschlag gespeichert";
+		bestätigung = neuesLand + " wurde als Vorschlag gespeichert";
 	}
 
 	public UserBean getUserBean() {

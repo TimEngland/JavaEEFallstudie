@@ -82,8 +82,7 @@ public class NeuesLand {
 
 	@Override
 	public String toString() {
-		return "NeuesLand [countryName=" + countryName + ", emissionen=" + emissionen + ", countryCode=" + countryCode
-				+ ", benutzerName=" + benutzerName + "]";
+		return "Das Land countryCode:" + countryCode + ", countryName:" + countryName + ", emissionen:" + emissionen ;
 	}
 	
 	@Override

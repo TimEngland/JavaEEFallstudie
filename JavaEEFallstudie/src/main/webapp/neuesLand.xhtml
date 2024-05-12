@@ -52,13 +52,12 @@
 	
 	<h:commandButton action="#{neuesLandController.neuesLandVorschlagen()}" value="Neues Land Einreichen"/>
 	
-	
+	</h:form>
 	
 	<h:outputText id="Bestätigung" value="#{neuesLandController.bestätigung}"></h:outputText>
-	</h:form>
+	
 
 	<f:metadata>
-    <f:viewParam name="foo" value="#{bean.foo}" />
     <f:viewAction action="#{neuesLandController.berechtigungPrüfen()}" />
 	</f:metadata>
 
